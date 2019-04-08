@@ -1,0 +1,22 @@
+/**
+ * TangoMan SCRUM Quizz
+ *
+ * @author  "Matthias Morin" <matthias.morin@gmail.com>
+ * @licence  MIT
+ */
+
+nav {
+    margin-bottom: 16px;
+}
+
+.card {
+    margin-bottom: 36px;
+}
+
+ul {
+    list-style: none;
+}
+
+footer {
+    min-height: 52px;
+}
