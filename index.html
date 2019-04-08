@@ -11,10 +11,6 @@
 
     <link rel="stylesheet" href="index.css">
 
-    <!-- Google fonts -->
-    <!-- https://fonts.google.com -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" />
-
     <!-- Bootstrap 4.3.1 CSS CDN -->
     <!-- https://getbootstrap.com -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -35,23 +31,29 @@
             </form>
         </nav>
         <div class="row">
-            <div class="col-12">
-                <div class="card" v-for="questions, key in quiz">
+            <div class="col-12" v-for="card, key in quiz">
+                <div class="card" v-if="key == currentPage">
                     <h2 class="card-header">Question {{ key +1 }} of {{ quiz.length }}</h2>
                     <div class="card-body">
-                        <h5 class="card-title">{{ questions.question }}</h5>
+                        <h5 class="card-title">{{ card.question }}</h5>
                         <p class="card-text">Correct answer:
-                            <span v-for="answer in questions.answers">{{ answer }})&nbsp;</span>
+                            <span v-for="answer in card.answers">{{ answer | capitalize }})&nbsp;</span>
                         </p>
                         <ul class="card-text">
-                            <li v-for="option in questions.options">{{ option.id }}) {{ option.option }}</li>
+                            <li v-for="option in card.options">
+                                <span v-if="card.answers.includes(option.id)">
+                                    <svg width="16" height="16" viewBox="0 0 12 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"></path></svg>
+                                </span>
+                                <span v-else class="placeholder"></span>
+                                {{ option.id | capitalize }}) {{ option.option }}
+                            </li>
                         </ul>
                     </div>
                     <p class="card-text text-center">
-                        <button type="button" class="btn btn-outline-secondary" @click="$emit('change', i+1)">Previous</button>
-                        <button type="button" class="btn btn-outline-success" @click="$emit('change', i-1)">Next</button>
+                        <button type="button" class="btn btn-outline-secondary" @click.prevent="gotoPrev()" :disabled="currentPage == 0">Previous</button>
+                        <button type="button" class="btn btn-outline-success" @click.prevent="gotoNext()" :disabled="isMaxPage">Next</button>
                     </p>
-                    <div class="card-footer">{{ questions.source }}</div>
+                    <div class="card-footer">{{ card.source }}</div>
                 </div><!-- end card -->
             </div><!-- end col -->
         </div><!-- end row -->

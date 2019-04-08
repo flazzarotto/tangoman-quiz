@@ -1,6 +1,33 @@
-var app = new Vue({ 
+/**
+* TangoMan SCRUM Quizz
+*
+* @author  "Matthias Morin" <matthias.morin@gmail.com>
+* @licence  MIT
+*/
+
+Vue.filter('capitalize', function(value) {
+    return value.toUpperCase()
+})
+
+let app = new Vue({ 
     el: '#app',
+    computed: {
+        isMaxPage() {
+            return this.currentPage == this.quiz.length - 1
+        }
+    },
+    methods: {
+        gotoNext() {
+            this.currentPage++
+        },
+        gotoPrev() {
+            if (this.currentPage > 0) {
+                this.currentPage--
+            }
+        }
+    },
     data: {
+        currentPage: 0,
         quiz: [
         {
             "source": "scrum open",

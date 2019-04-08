@@ -6,7 +6,7 @@
  */
 
 nav {
-    margin-bottom: 16px;
+    margin-bottom: 32px;
 }
 
 .card {
@@ -19,4 +19,14 @@ ul {
 
 footer {
     min-height: 52px;
+}
+
+.card-body {
+    min-height: 30vh;
+}
+
+.placeholder {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
 }
