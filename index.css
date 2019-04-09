@@ -6,27 +6,30 @@
  */
 
 nav {
-    margin-bottom: 32px;
+    margin-bottom: 64px;
 }
 
 .card {
-    margin-bottom: 36px;
+    margin-bottom: 64px;
 }
 
 ul {
     list-style: none;
 }
 
+li {
+    position: relative;
+}
+
 footer {
-    min-height: 52px;
+    min-height: 64px;
 }
 
 .card-body {
     min-height: 30vh;
 }
 
-.placeholder {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
+.icon {
+    position: absolute;
+    left: -22px;
 }
