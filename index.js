@@ -17,17 +17,21 @@ let app = new Vue({
         }
     },
     methods: {
-        gotoNext() {
+        next() {
             this.currentPage++
         },
-        gotoPrev() {
+        prev() {
             if (this.currentPage > 0) {
                 this.currentPage--
             }
+        },
+        submit(key) {
+            this.submitted.push(key)
         }
     },
     data: {
         currentPage: 0,
+        submitted: [],
         quiz: [
         {
             "source": "scrum open",
